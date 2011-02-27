@@ -152,7 +152,8 @@ Content-Type: "
 Connection: close"))
 
 (map (fn ((k v)) (= (type-header* k) (gen-type-header v)))
-     '((gif       "image/gif")
+     '((css       "text/css")
+       (gif       "image/gif")
        (jpg       "image/jpeg")
        (png       "image/png")
        (text/html "text/html; charset=utf-8")))
@@ -237,7 +238,7 @@ Connection: close"))
            "jpg"  'jpg
            "jpeg" 'jpg
            "png"  'png
-           "css"  'text/html
+           "css"  'css
            "txt"  'text/html
            "htm"  'text/html
            "html" 'text/html

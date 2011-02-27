@@ -7,13 +7,13 @@
 
 (declare 'atstrings t)
 
-(= this-site*    "My Forum"
-   site-url*     "http://news.yourdomain.com/"
-   parent-url*   "http://www.yourdomain.com"
-   favicon-url*  ""
-   site-desc*    "What this site is about."               ; for rss feed
-   site-color*   (color 180 180 180)
-   border-color* (color 180 180 180)
+(= this-site*    "Scientific Questions"
+   site-url*     "http://sq.espians.com/"
+   parent-url*   "http://sq.espians.com"
+   favicon-url*  "favicon.png"
+   site-desc*    "A site dedicated to exploring Scientific Questions."               ; for rss feed
+   site-color*   (color 159 151 146)
+   border-color* (color 180 0 0)
    prefer-url*   t)
 
 
@@ -388,17 +388,18 @@
 
 ; Page Layout
 
-(= up-url* "grayarrow.gif" down-url* "graydown.gif" logo-url* "arc.png")
+(= up-url* "grayarrow.gif" down-url* "graydown.gif" logo-url* "logo.png")
 
 (defopr favicon.ico req favicon-url*)
 
 ; redefined later
 
 (def gen-css-url ()
-  (prn "<link rel=\"stylesheet\" type=\"text/css\" href=\"news.css\">"))
+  (prn "<link rel=\"stylesheet\" type=\"text/css\" href=\"sq.css\">"))
 
 (mac npage (title . body)
-  `(tag html 
+  `(do (prn "<!doctype html>")
+   (tag html
      (tag head 
        (gen-css-url)
        (prn "<link rel=\"shortcut icon\" href=\"" favicon-url* "\">")
@@ -407,8 +408,8 @@
      (tag body 
        (center
          (tag (table border 0 cellpadding 0 cellspacing 0 width "85%"
-                     bgcolor sand)
-           ,@body)))))
+                     bgcolor sand style "margin-top: 20px;")
+           ,@body))))))
 
 (= pagefns* nil)
 
@@ -427,9 +428,7 @@
     `(with (,gu ,user ,gt ,t1 ,gi ,lid)
        (fulltop ,gu ,gi ,label ,title ,whence
          (trtd ,@body)
-         (trtd (vspace 10)
-               (color-stripe (main-color ,gu))
-               (br)
+         (trtd (br)
                (center
                  (hook 'longfoot)
                  (admin-bar ,gu (- (msec) ,gt) ,whence)))))))
@@ -567,17 +566,17 @@ function vote(node) {
 (def pagetop (switch lid label (o title) (o user) (o whence))
 ; (tr (tdcolor black (vspace 5)))
   (tr (tdcolor (main-color user)
-        (tag (table border 0 cellpadding 0 cellspacing 0 width "100%"
+        (tag (table border 0 cellpadding "2px" cellspacing 0 width "100%"
                     style "padding:2px")
           (tr (gen-logo)
               (when (is switch 'full)
-                (tag (td style "line-height:12pt; height:10px;")
+                (tag (td style "line-height:12pt; height:10px; vertical-align: top; padding-top: 6px;")
                   (spanclass pagetop
                     (tag b (link this-site* "news"))
                     (hspace 10)
                     (toprow user label))))
              (if (is switch 'full)
-                 (tag (td style "text-align:right;padding-right:4px;")
+                 (tag (td style "text-align:right;padding-right:4px; vertical-align: top; padding-top: 6px;")
                    (spanclass pagetop (topright user whence)))
                  (tag (td style "line-height:12pt; height:10px;")
                    (spanclass pagetop (prbold label))))))))
@@ -587,8 +586,7 @@ function vote(node) {
 (def gen-logo ()
   (tag (td style "width:18px;padding-right:4px")
     (tag (a href parent-url*)
-      (tag (img src logo-url* width 18 height 18 
-                style "border:1px #@(hexrep border-color*) solid;")))))
+      (tag (img src logo-url* width 32 height 23)))))
 
 (= toplabels* '(nil "welcome" "new" "threads" "comments" "leaders" "*"))
 
@@ -598,8 +596,8 @@ function vote(node) {
 
 (def toprow (user label)
   (w/bars 
-    (when (noob user)
-      (toplink "welcome" welcome-url* label)) 
+    ;(when (noob user)
+    ;  (toplink "welcome" welcome-url* label))
     (toplink "new" "newest" label)
     (when user
       (toplink "threads" (threads-url user) label))
@@ -743,10 +741,10 @@ function vote(node) {
       (profile-form user subject)
       (br2)
       (when (some astory:item (uvar subject submitted))
-        (underlink "submissions" (submitted-url subject)))
+        (tag (div style "padding: 10px;") (underlink "submissions" (submitted-url subject))))
       (when (some acomment:item (uvar subject submitted))
         (sp)
-        (underlink "comments" (threads-url subject)))
+        (tag (div style "padding: 10px;") (underlink "comments" (threads-url subject))))
       (hook 'user user subject))))
 
 (def profile-form (user subject)
@@ -1467,7 +1465,7 @@ function vote(node) {
       (submit-page user u t)
       (submit-login-warning u t)))
 
-(= title-limit* 80
+(= title-limit* 120
    retry*       "Please try again."
    toolong*     "Please make title < @title-limit* characters."
    bothblank*   "The url and text fields can't both be blank.  Please
@@ -1492,8 +1490,8 @@ function vote(node) {
             (flink [submit-page user url title showtext text retry*])
            (len> title title-limit*)
             (flink [submit-page user url title showtext text toolong*])
-           (and (blank url) (blank text))
-            (flink [submit-page user url title showtext text bothblank*])
+           ; (and (blank url) (blank text))
+           ;  (flink [submit-page user url title showtext text bothblank*])
            (let site (sitename url)
              (or (big-spamsites* site) (recent-spam site)))
             (flink [msgpage user spammage*])

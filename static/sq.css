@@ -1,0 +1,153 @@
+body {
+	background-color: #3e3935;
+	background-image: url("/bg.jpg");
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 13px;
+	line-height: 16px;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+hr.clear {
+	background-color: transparent;
+	border: none;
+	clear: both;
+	height: 0;
+	margin: 0;
+	padding: 0;
+	width: 0;
+}
+
+img {
+	border: none;
+}
+
+img.absmiddle {
+	vertical-align: middle;
+}
+
+#home {
+	font-size: 18px;
+	font-weight: bold;
+	text-decoration: none !important;
+}
+
+#logo {
+	display: block;
+	font-weight: bold;
+	float: left;
+	margin-left: 5px;
+	margin-right: 4px;
+	text-decoration: none !important;
+}
+
+#main {
+	background: #f8f8ff;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-left-radius: 5px;
+	padding: 20px 5px 13px 9px;
+}
+
+#navbar {
+	background-color: #9f9792;
+	border-bottom: 0px solid #3e3935;
+	color: #191c1c;
+	font-size: 14px;
+	line-height: 23px;
+	padding: 9px 0 10px 0;
+}
+
+#navbar a {
+	color: #000;
+}
+
+#user {
+	float: right;
+	padding-right: 9px;
+}
+
+#wrapper {
+	width: 850px;
+	margin: 10px auto;
+}
+
+.i {
+	font-size: 9px;
+	color: #666;
+	padding-top: 2px;
+}
+
+.i a {
+	color: #666;
+}
+
+.v {
+	float: left;
+	padding: 0 7px 5px 3px;
+	margin-bottom: 9px;
+}
+
+.w {
+	clear: both;
+	margin-bottom: 7px;
+}
+
+/* news.arc */
+
+.admin td   { font-size:8.5pt; color:#000000; }
+.subtext td { font-size:  7pt; color:#828282; }
+
+input    { font-family: Courier; font-size:10pt; color:#000000; }
+input[type=\"submit\"] { font-family:Verdana; }
+
+textarea { font-family:Courier; font-size:10pt; color:#000000; }
+
+a:link    { color:#000000; text-decoration:none; }
+a:visited { color:#828282; text-decoration:none; }
+
+.default { font-size: 10pt; color:#828282; }
+.admin   { font-size:8.5pt; color:#000000; }
+.title   { font-size: 10pt; color:#828282; }
+
+.title a {
+	color: #000;
+}
+
+.adtitle { font-size:  9pt; color:#828282; }
+.subtext { font-size:  7pt; color:#828282; }
+.yclinks { font-size:  8pt; color:#828282; }
+.pagetop { font-size: 10pt; color:#222222; }
+.comhead { font-size:  8pt; color:#828282; }
+.comment { font-size:  9pt; }
+.dead    { font-size:  9pt; color:#dddddd; }
+
+.comment a:link, .comment a:visited { text-decoration:underline;}
+.dead a:link, .dead a:visited { color:#dddddd; }
+.pagetop a:visited { color:#000000;}
+.topsel a:link, .topsel a:visited { color:#ffffff; }
+
+.subtext a:link, .subtext a:visited { color:#828282; }
+.subtext a:hover { text-decoration:underline; }
+
+.comhead a:link, .subtext a:visited { color:#828282; }
+.comhead a:hover { text-decoration:underline; }
+
+.default p { margin-top: 8px; margin-bottom: 0px; }
+
+.pagebreak {page-break-before:always}
+
+pre { overflow: auto; padding: 2px; max-width:600px; }
+pre:hover {overflow:auto}
